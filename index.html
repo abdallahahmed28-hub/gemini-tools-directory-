@@ -38,6 +38,30 @@
             color: #030705;
             font-weight: 700;
         }
+        /* Toast Notification */
+        #toast {
+            visibility: hidden;
+            min-width: 270px;
+            background-color: #064e3b;
+            color: #fcd34d;
+            text-align: center;
+            border-radius: 12px;
+            padding: 14px;
+            position: fixed;
+            z-index: 50;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            border: 1px solid #d4af37;
+            font-size: 13px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+        @keyframes fadein {from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;}}
+        @keyframes fadeout {from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;}}
     </style>
 </head>
 <body class="p-4 sm:p-8">
@@ -52,7 +76,7 @@
                 الدليل الشامل لأدوات وخدمات جيميناي
             </h1>
             <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-                المرجع التقني الأضخم لجميع أدوات منظومة جيميناي والخدمات المرتبطة بها، مع الانتقال الفوري والمباشر لكل أداة.
+                يعمل بسلاسة على كافة الأجهزة: يفتح تطبيق جيميناي على الهواتف (أندرويد وآيفون) وينتقل لمتصفح الكمبيوتر فوراً.
             </p>
         </header>
 
@@ -63,10 +87,10 @@
                 <span class="inline-block bg-amber-500 text-slate-950 font-bold text-xs px-3 py-1 rounded-full mb-3">منتج مميز من البركة ديجيتال</span>
                 <h2 class="text-xl sm:text-2xl font-black text-amber-300 mb-2">منصة أتمتة المحتوى الذكي التفاعلي</h2>
                 <p class="text-slate-200 text-sm sm:text-base leading-relaxed mb-6">
-                    نظام رقمي متكامل صُمم خصيصاً لصناع المحتوى لتوجيه أذكياء جيميناي وإنتاج الفيديوهات القصيرة والتصميمات الفاخرة بلمسة واحدة وبأعلى معايير الأداء الرقمي.
+                    نظام رقمي متكامل صُمم خصيصاً لصناع المحتوى لتوجيه أذكياء جيميناي وإنتاج الفيديوهات القصيرة والتصميمات الفاخرة بلمسة واحدة عبر مختلف الأجهزة.
                 </p>
                 <div class="flex flex-wrap gap-3">
-                    <span class="text-xs bg-emerald-900/60 border border-emerald-600 text-emerald-300 px-3 py-1.5 rounded-xl">⚡ وصول مباشر للأدوات</span>
+                    <span class="text-xs bg-emerald-900/60 border border-emerald-600 text-emerald-300 px-3 py-1.5 rounded-xl">⚡ توافق تام مع كافة الأجهزة</span>
                     <span class="text-xs bg-emerald-900/60 border border-emerald-600 text-emerald-300 px-3 py-1.5 rounded-xl">💎 إشراف هندسي متقدم</span>
                 </div>
             </div>
@@ -88,7 +112,7 @@
             <button onclick="filterCategory('mobile')" class="category-tab px-4 py-2 rounded-xl bg-slate-900 text-slate-300 border border-emerald-900 text-xs sm:text-sm transition">الهاتف والأجهزة</button>
         </div>
 
-        <!-- Tools Grid (Dozens of Tools with Direct Deep Linking) -->
+        <!-- Tools Grid -->
         <div id="toolsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
             
             <!-- 1. Veo -->
@@ -101,7 +125,7 @@
                     <h3 class="text-base font-bold text-amber-300 mb-1.5">Veo (توليد الفيديو)</h3>
                     <p class="text-slate-300 text-xs leading-relaxed mb-4">إنتاج مقاطع سينمائية بدقة 4K مع تحكم كامل بكاميرا التصوير والإطارات.</p>
                 </div>
-                <a href="https://gemini.google.com/?q=Create%20a%20cinematic%20video%20using%20Veo" target="_blank" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح الأداة مباشرة ←</a>
+                <button onclick="openSmart('إنشاء مقطع فيديو سينمائي باستخدام أداة Veo بجودة 4K', 'https://gemini.google.com')" class="w-full text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md cursor-pointer">فتح الأداة الذكية ←</button>
             </div>
 
             <!-- 2. Imagen -->
@@ -114,7 +138,7 @@
                     <h3 class="text-base font-bold text-amber-300 mb-1.5">Image Generation / Imagen</h3>
                     <p class="text-slate-300 text-xs leading-relaxed mb-4">توليد لوحات فنية، صور واقعية وعناصر بصرية بدقة بكسل فائقة.</p>
                 </div>
-                <a href="https://gemini.google.com/?q=Generate%20an%20image%20using%20Imagen" target="_blank" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح الأداة مباشرة ←</a>
+                <button onclick="openSmart('توليد وتصميم صورة فنية واقعية عالية الدقة باستخدام Imagen', 'https://gemini.google.com')" class="w-full text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md cursor-pointer">فتح الأداة الذكية ←</button>
             </div>
 
             <!-- 3. Lyria -->
@@ -127,7 +151,7 @@
                     <h3 class="text-base font-bold text-amber-300 mb-1.5">Lyria (الموسيقى والصوت)</h3>
                     <p class="text-slate-300 text-xs leading-relaxed mb-4">تأليف مقاطع موسيقية فريدة وتصدير مؤثرات صوتية مخصصة لإثراء المحتوى.</p>
                 </div>
-                <a href="https://gemini.google.com/?q=Compose%20music%20with%20Lyria" target="_blank" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح الأداة مباشرة ←</a>
+                <button onclick="openSmart('تأليف مقطع موسيقي احترافي وتصدير مؤثرات صوتية باستخدام Lyria', 'https://gemini.google.com')" class="w-full text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md cursor-pointer">فتح الأداة الذكية ←</button>
             </div>
 
             <!-- 4. Deep Research -->
@@ -140,7 +164,7 @@
                     <h3 class="text-base font-bold text-amber-300 mb-1.5">Deep Research</h3>
                     <p class="text-slate-300 text-xs leading-relaxed mb-4">وكيل بحث متقدم لمسح مئات المواقع وإنتاج تقارير شاملة وموثقة.</p>
                 </div>
-                <a href="https://gemini.google.com/?q=Start%20Deep%20Research%20on" target="_blank" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح الأداة مباشرة ←</a>
+                <button onclick="openSmart('بدء البحث العميق (Deep Research) وإنتاج تقرير شامل حول الموضوع التالي: ', 'https://gemini.google.com')" class="w-full text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md cursor-pointer">فتح الأداة الذكية ←</button>
             </div>
 
             <!-- 5. Deep Think -->
@@ -153,7 +177,7 @@
                     <h3 class="text-base font-bold text-amber-300 mb-1.5">Deep Think</h3>
                     <p class="text-slate-300 text-xs leading-relaxed mb-4">وضع تفكير متعدّد الخطوات لمعالجة المشكلات البرمجية المعقدة.</p>
                 </div>
-                <a href="https://gemini.google.com/?q=Use%20Deep%20Think%20to%20solve" target="_blank" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح الأداة مباشرة ←</a>
+                <button onclick="openSmart('تفعيل الاستدلال العميق (Deep Think) لتحليل وحل مشكلة برمجية كالتالي: ', 'https://gemini.google.com')" class="w-full text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md cursor-pointer">فتح الأداة الذكية ←</button>
             </div>
 
             <!-- 6. Canvas -->
@@ -166,7 +190,7 @@
                     <h3 class="text-base font-bold text-amber-300 mb-1.5">Gemini Canvas</h3>
                     <p class="text-slate-300 text-xs leading-relaxed mb-4">لوحة تفاعلية جانبية لتطوير النصوص والأكواد البرمجية مباشرة.</p>
                 </div>
-                <a href="https://gemini.google.com/?panel=canvas" target="_blank" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح الأداة مباشرة ←</a>
+                <button onclick="openSmart('فتح مساحة العمل (Canvas) لتطوير وكتابة الأكواد والنصوص', 'https://gemini.google.com')" class="w-full text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md cursor-pointer">فتح الأداة الذكية ←</button>
             </div>
 
             <!-- 7. Gemini Spark -->
@@ -179,7 +203,7 @@
                     <h3 class="text-base font-bold text-amber-300 mb-1.5">Gemini Spark</h3>
                     <p class="text-slate-300 text-xs leading-relaxed mb-4">وكيل ذكي يعمل في الخلفية على مدار الساعة لتنفيذ المهام نيابة عنك.</p>
                 </div>
-                <a href="https://gemini.google.com/?agent=spark" target="_blank" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح الأداة مباشرة ←</a>
+                <button onclick="openSmart('تفعيل وكيل المهام (Gemini Spark) لمتابعة وتنفيذ المهام التالية: ', 'https://gemini.google.com')" class="w-full text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md cursor-pointer">فتح الأداة الذكية ←</button>
             </div>
 
             <!-- 8. Gems -->
@@ -192,7 +216,7 @@
                     <h3 class="text-base font-bold text-amber-300 mb-1.5">Gems (المساعدون المخصصون)</h3>
                     <p class="text-slate-300 text-xs leading-relaxed mb-4">إنشاء شخصيات ذكاء اصطناعي مخصصة بقواعد ثابتة لتكرار المهام.</p>
                 </div>
-                <a href="https://gemini.google.com/gems" target="_blank" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح الأداة مباشرة ←</a>
+                <button onclick="openSmart('إنشاء وتكوين مساعد ذكي مخصص (Gems) بالتعليمات التالية: ', 'https://gemini.google.com/gems')" class="w-full text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md cursor-pointer">فتح الأداة الذكية ←</button>
             </div>
 
             <!-- 9. Google Workspace Integration -->
@@ -205,7 +229,7 @@
                     <h3 class="text-base font-bold text-amber-300 mb-1.5">Google Workspace AI</h3>
                     <p class="text-slate-300 text-xs leading-relaxed mb-4">التكامل مع مستندات جوجل، جيميل، وجداول البيانات بالأوامر الذكية.</p>
                 </div>
-                <a href="https://docs.google.com" target="_blank" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح المنصة مباشرة ←</a>
+                <button onclick="openSmart('استخدام تكامل Google Workspace لإدارة المستندات والبريد الإلكتروني', 'https://docs.google.com')" class="w-full text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md cursor-pointer">فتح الأداة الذكية ←</button>
             </div>
 
             <!-- 10. Gemini Live -->
@@ -218,7 +242,7 @@
                     <h3 class="text-base font-bold text-amber-300 mb-1.5">Gemini Live</h3>
                     <p class="text-slate-300 text-xs leading-relaxed mb-4">محادثة صوتية تفاعلية حية وطبيعية مع ميزة المقاطعة الفورية.</p>
                 </div>
-                <a href="https://gemini.google.com/?mode=live" target="_blank" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح الأداة مباشرة ←</a>
+                <button onclick="openSmart('بدء جلسة محادثة صوتية حية عبر Gemini Live', 'https://gemini.google.com')" class="w-full text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md cursor-pointer">فتح الأداة الذكية ←</button>
             </div>
 
             <!-- 11. Google AI Studio -->
@@ -231,7 +255,7 @@
                     <h3 class="text-base font-bold text-amber-300 mb-1.5">Google AI Studio</h3>
                     <p class="text-slate-300 text-xs leading-relaxed mb-4">بيئة متقدمة لتجربة النماذج البرمجية واستخراج مفاتيح API.</p>
                 </div>
-                <a href="https://aistudio.google.com" target="_blank" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح المنصة مباشرة ←</a>
+                <button onclick="openSmart('فتح وتكوين النماذج عبر Google AI Studio واستخراج مفاتيح API', 'https://aistudio.google.com')" class="w-full text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md cursor-pointer">فتح الأداة الذكية ←</button>
             </div>
 
             <!-- 12. Vertex AI -->
@@ -244,7 +268,7 @@
                     <h3 class="text-base font-bold text-amber-300 mb-1.5">Google Cloud Vertex AI</h3>
                     <p class="text-slate-300 text-xs leading-relaxed mb-4">منصة المؤسسات لبناء ونشر نماذج الذكاء الاصطناعي السحابية.</p>
                 </div>
-                <a href="https://console.cloud.google.com/vertex-ai" target="_blank" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح المنصة مباشرة ←</a>
+                <button onclick="openSmart('استخدام Google Cloud Vertex AI لنشر نماذج الذكاء الاصطناعي للمؤسسات', 'https://console.cloud.google.com/vertex-ai')" class="w-full text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md cursor-pointer">فتح الأداة الذكية ←</button>
             </div>
 
             <!-- 13. Google Lens -->
@@ -257,7 +281,7 @@
                     <h3 class="text-base font-bold text-amber-300 mb-1.5">Multimodal Lens Search</h3>
                     <p class="text-slate-300 text-xs leading-relaxed mb-4">التحليل البصري الفوري عبر الكاميرا والبحث المباشر عن العناصر.</p>
                 </div>
-                <a href="https://lens.google.com" target="_blank" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح الأداة مباشرة ←</a>
+                <button onclick="openSmart('استخدام البحث البصري وعدسة جوجل لتحليل الصورة وتحديد العناصر', 'https://lens.google.com')" class="w-full text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md cursor-pointer">فتح الأداة الذكية ←</button>
             </div>
 
             <!-- 14. Google Photos AI Edit -->
@@ -270,10 +294,13 @@
                     <h3 class="text-base font-bold text-amber-300 mb-1.5">Google Photos AI Tools</h3>
                     <p class="text-slate-300 text-xs leading-relaxed mb-4">أدوات التعديل السحري، إزالة العناصر وتحسين الصور بالذكاء الاصطناعي.</p>
                 </div>
-                <a href="https://photos.google.com" target="_blank" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح الأداة مباشرة ←</a>
+                <button onclick="openSmart('تفعيل أدوات التعديل السحري وتحسين الصور في Google Photos', 'https://photos.google.com')" class="w-full text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md cursor-pointer">فتح الأداة الذكية ←</button>
             </div>
 
         </div>
+
+        <!-- Toast Notification -->
+        <div id="toast">تم نسخ أمر الأداة! افتح جيميناي والصق لتنفيذها فورا ⚡</div>
 
         <!-- Footer -->
         <footer class="text-center mt-14 pb-8 text-xs text-slate-400 border-t border-emerald-950/60 pt-6">
@@ -283,6 +310,34 @@
     </div>
 
     <script>
+        // Smart Open Function for Mobile (App + Clipboard) & PC (Web)
+        function openSmart(promptText, webUrl) {
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+            if (isMobile) {
+                // Copy prompt text to clipboard
+                navigator.clipboard.writeText(promptText).then(() => {
+                    showToast();
+                }).catch(err => {
+                    console.log('Clipboard error', err);
+                });
+
+                // Launch Gemini mobile app scheme
+                setTimeout(() => {
+                    window.location.href = "googlegemini://";
+                }, 300);
+            } else {
+                // On PC / Desktop, open web link directly
+                window.open(webUrl, '_blank');
+            }
+        }
+
+        function showToast() {
+            const toast = document.getElementById("toast");
+            toast.className = "show";
+            setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
+        }
+
         // Search & Filter Logic
         const searchInput = document.getElementById('searchInput');
         const cards = document.querySelectorAll('#toolsGrid > div');
