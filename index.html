@@ -26,17 +26,22 @@
         }
         .luxury-card:hover {
             border-color: rgba(212, 175, 55, 0.7);
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             box-shadow: 0 15px 35px -5px rgba(5, 150, 105, 0.25);
         }
         .featured-banner {
             background: linear-gradient(135deg, #062319 0%, #0a192f 100%);
             border: 2px solid #d4af37;
         }
+        .category-tab.active {
+            background: linear-gradient(135deg, #d4af37 0%, #aa771c 100%);
+            color: #030705;
+            font-weight: 700;
+        }
     </style>
 </head>
 <body class="p-4 sm:p-8">
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-5xl mx-auto">
         
         <!-- Header Branding -->
         <header class="text-center mb-10 pt-6">
@@ -44,10 +49,10 @@
                 إنتاج: البركة ديجيتال | إشراف: عبد الله أحمد
             </div>
             <h1 class="text-3xl sm:text-5xl font-black mb-4 gold-gradient leading-tight">
-                الدليل الشامل لأدوات جيميناي
+                الدليل الشامل لأدوات وخدمات جيميناي
             </h1>
             <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-                بوابتك المتكاملة لاستكشاف والوصول إلى أحدث خدمات وذكاءات منظومة جيميناي العالمية، مصممة خصيصاً لتلهم إبداعك الرقمي.
+                المرجع التقني الأضخم لجميع أدوات منظومة جيميناي والخدمات المرتبطة بها، مصمم خصيصاً للفتح المباشر عبر تطبيقات الهاتف الرسمية.
             </p>
         </header>
 
@@ -56,159 +61,283 @@
             <div class="absolute -left-10 -top-10 w-40 h-40 bg-amber-500/10 rounded-full blur-2xl"></div>
             <div class="relative z-10">
                 <span class="inline-block bg-amber-500 text-slate-950 font-bold text-xs px-3 py-1 rounded-full mb-3">منتج مميز من البركة ديجيتال</span>
-                <h2 class="text-xl sm:text-2xl font-black text-amber-300 mb-2">منصة المحتوى الذكي التفاعلي</h2>
+                <h2 class="text-xl sm:text-2xl font-black text-amber-300 mb-2">منصة أتمتة المحتوى الذكي التفاعلي</h2>
                 <p class="text-slate-200 text-sm sm:text-base leading-relaxed mb-6">
-                    حل رقمي متكامل صُمم خصيصاً لصناع المحتوى والمنصات الرقمية، يتيح أتمتة إنتاج الفيديوهات القصيرة والتصميمات البصرية الفاخرة بلمسة ذكية واحدة وبأعلى معايير الجودة العالمية.
+                    نظام رقمي متكامل صُمم خصيصاً لصناع المحتوى لتوجيه أذكياء جيميناي وإنتاج الفيديوهات القصيرة والتصميمات الفاخرة بلمسة واحدة وبأعلى معايير الأداء الرقمي.
                 </p>
                 <div class="flex flex-wrap gap-3">
-                    <span class="text-xs bg-emerald-900/60 border border-emerald-600 text-emerald-300 px-3 py-1.5 rounded-xl">⚡ سرعة فائقة في التنفيذ</span>
-                    <span class="text-xs bg-emerald-900/60 border border-emerald-600 text-emerald-300 px-3 py-1.5 rounded-xl">🎨 تصاميم فاخرة مخصصة</span>
+                    <span class="text-xs bg-emerald-900/60 border border-emerald-600 text-emerald-300 px-3 py-1.5 rounded-xl">⚡ تكامل مباشر مع التطبيقات</span>
+                    <span class="text-xs bg-emerald-900/60 border border-emerald-600 text-emerald-300 px-3 py-1.5 rounded-xl">💎 إشراف هندسي متقدم</span>
                 </div>
             </div>
         </section>
 
         <!-- Search Bar -->
         <div class="mb-8">
-            <input type="text" id="searchInput" placeholder="ابحث عن أداة أو ميزة..." 
+            <input type="text" id="searchInput" placeholder="ابحث في عشرات الأدوات والخدمات..." 
                 class="w-full px-5 py-4 rounded-2xl bg-slate-900/90 border border-emerald-800 text-slate-100 placeholder-slate-400 focus:outline-none focus:border-amber-400 transition text-sm sm:text-base shadow-inner">
         </div>
 
-        <!-- Tools Grid -->
-        <div id="toolsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <!-- Categories Filter -->
+        <div class="flex flex-wrap gap-2 mb-8 justify-center" id="categoryFilters">
+            <button onclick="filterCategory('all')" class="category-tab active px-4 py-2 rounded-xl bg-slate-900 text-slate-300 border border-emerald-900 text-xs sm:text-sm transition">الكل</button>
+            <button onclick="filterCategory('creative')" class="category-tab px-4 py-2 rounded-xl bg-slate-900 text-slate-300 border border-emerald-900 text-xs sm:text-sm transition">الإبداع والوسائط</button>
+            <button onclick="filterCategory('research')" class="category-tab px-4 py-2 rounded-xl bg-slate-900 text-slate-300 border border-emerald-900 text-xs sm:text-sm transition">البحث والاستدلال</button>
+            <button onclick="filterCategory('workspace')" class="category-tab px-4 py-2 rounded-xl bg-slate-900 text-slate-300 border border-emerald-900 text-xs sm:text-sm transition">جوجل ووركسبیس</button>
+            <button onclick="filterCategory('dev')" class="category-tab px-4 py-2 rounded-xl bg-slate-900 text-slate-300 border border-emerald-900 text-xs sm:text-sm transition">المطورين والسحابية</button>
+            <button onclick="filterCategory('mobile')" class="category-tab px-4 py-2 rounded-xl bg-slate-900 text-slate-300 border border-emerald-900 text-xs sm:text-sm transition">الهاتف والأجهزة</button>
+        </div>
+
+        <!-- Tools Grid (Dozens of Tools) -->
+        <div id="toolsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
             
             <!-- 1. Veo -->
-            <div class="luxury-card p-6 rounded-3xl flex flex-col justify-between" data-keywords="veo فيديو سينمائي صناعة المحتوى">
+            <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between" data-category="creative" data-keywords="veo فيديو سينمائي 4k">
                 <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-3xl">🎥</span>
-                        <span class="text-xs px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">فيديو سينمائي</span>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-2xl">🎥</span>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">وسائط</span>
                     </div>
-                    <h3 class="text-xl font-bold text-amber-300 mb-2">Veo (توليد الفيديو)</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed mb-6">أداة ثورية لإنتاج مقاطع فيديو سينمائية وعالية الدقة (حتى 4K) مع تحكم دقيق في زوايا الكاميرا وتوجيه الإطارات البصرية.</p>
+                    <h3 class="text-base font-bold text-amber-300 mb-1.5">Veo (توليد الفيديو)</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed mb-4">إنتاج مقاطع سينمائية بدقة 4K مع تحكم كامل بكاميرا التصوير والإطارات.</p>
                 </div>
-                <a href="https://gemini.google.com" target="_blank" class="block text-center py-3 px-4 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold text-sm transition shadow-lg">فتح في جيميناي ←</a>
+                <a href="googlegemini://app" onclick="fallbackOpen(event, 'https://gemini.google.com')" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح في التطبيق ←</a>
             </div>
 
             <!-- 2. Imagen -->
-            <div class="luxury-card p-6 rounded-3xl flex flex-col justify-between" data-keywords="imagen صور بكسل فنية التصميم البصري">
+            <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between" data-category="creative" data-keywords="imagen صور بكسل فنية">
                 <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-3xl">🖼️</span>
-                        <span class="text-xs px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">التصميم البصري</span>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-2xl">🖼️</span>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">وسائط</span>
                     </div>
-                    <h3 class="text-xl font-bold text-amber-300 mb-2">Image Generation / Imagen</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed mb-6">لتصميم لوحات فنية مذهلة، صور واقعية عالية الدقة، وتوليد عناصر بصرية فريدة تلبي تطلعاتك الإبداعية.</p>
+                    <h3 class="text-base font-bold text-amber-300 mb-1.5">Image Generation / Imagen</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed mb-4">توليد لوحات فنية، صور واقعية وعناصر بصرية بدقة بكسل فائقة.</p>
                 </div>
-                <a href="https://gemini.google.com" target="_blank" class="block text-center py-3 px-4 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold text-sm transition shadow-lg">فتح في جيميناي ←</a>
+                <a href="googlegemini://app" onclick="fallbackOpen(event, 'https://gemini.google.com')" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح في التطبيق ←</a>
             </div>
 
             <!-- 3. Lyria -->
-            <div class="luxury-card p-6 rounded-3xl flex flex-col justify-between" data-keywords="lyria صوت موسيقى مؤثرات صوتية">
+            <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between" data-category="creative" data-keywords="lyria صوت موسيقى مؤثرات">
                 <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-3xl">🎵</span>
-                        <span class="text-xs px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">الصوتيات</span>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-2xl">🎵</span>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">صوتيات</span>
                     </div>
-                    <h3 class="text-xl font-bold text-amber-300 mb-2">Lyria (توليد الصوت والموسيقى)</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed mb-6">تأليف مقاطع موسيقية فريدة وتصدير مؤثرات صوتية احترافية تضفي عمقاً وتأثيراً استثنائياً على محتوائك الرقمي.</p>
+                    <h3 class="text-base font-bold text-amber-300 mb-1.5">Lyria (الموسيقى والصوت)</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed mb-4">تأليف مقاطع موسيقية فريدة وتصدير مؤثرات صوتية مخصصة لإثراء المحتوى.</p>
                 </div>
-                <a href="https://gemini.google.com" target="_blank" class="block text-center py-3 px-4 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold text-sm transition shadow-lg">فتح في جيميناي ←</a>
+                <a href="googlegemini://app" onclick="fallbackOpen(event, 'https://gemini.google.com')" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح في التطبيق ←</a>
             </div>
 
             <!-- 4. Deep Research -->
-            <div class="luxury-card p-6 rounded-3xl flex flex-col justify-between" data-keywords="deep research بحث عميق تقارير معلومات">
+            <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between" data-category="research" data-keywords="deep research بحث عميق تقارير">
                 <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-3xl">🔍</span>
-                        <span class="text-xs px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">البحث والتحليل</span>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-2xl">🔍</span>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">بحث</span>
                     </div>
-                    <h3 class="text-xl font-bold text-amber-300 mb-2">Deep Research (البحث العميق)</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed mb-6">وكيل بحث متطور يقوم بمسح مئات المواقع والملفات والمصادر لتوليد تقارير شاملة وموثقة بدقة متناهية.</p>
+                    <h3 class="text-base font-bold text-amber-300 mb-1.5">Deep Research</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed mb-4">وكيل بحث متقدم لمسح مئات المواقع وإنتاج تقارير شاملة وموثقة.</p>
                 </div>
-                <a href="https://gemini.google.com" target="_blank" class="block text-center py-3 px-4 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold text-sm transition shadow-lg">فتح في جيميناي ←</a>
+                <a href="googlegemini://app" onclick="fallbackOpen(event, 'https://gemini.google.com')" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح في التطبيق ←</a>
             </div>
 
             <!-- 5. Deep Think -->
-            <div class="luxury-card p-6 rounded-3xl flex flex-col justify-between" data-keywords="deep think استدلال تفكير برمجة معقدة">
+            <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between" data-category="research" data-keywords="deep think استدلال تفكير برمجة">
                 <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-3xl">🧠</span>
-                        <span class="text-xs px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">الاستدلال</span>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-2xl">🧠</span>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">استدلال</span>
                     </div>
-                    <h3 class="text-xl font-bold text-amber-300 mb-2">Deep Think (الاستدلال العميق)</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed mb-6">نمط تفكير استراتيجي متعدد الخطوات لمعالجة المشكلات البرمجية والرياضية المعقدة وتحليلها بعمق قبل الإجابة.</p>
+                    <h3 class="text-base font-bold text-amber-300 mb-1.5">Deep Think</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed mb-4">وضع تفكير متعدّد الخطوات لمعالجة المشكلات البرمجية المعقدة.</p>
                 </div>
-                <a href="https://gemini.google.com" target="_blank" class="block text-center py-3 px-4 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold text-sm transition shadow-lg">فتح في جيميناي ←</a>
+                <a href="googlegemini://app" onclick="fallbackOpen(event, 'https://gemini.google.com')" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح في التطبيق ←</a>
             </div>
 
             <!-- 6. Canvas -->
-            <div class="luxury-card p-6 rounded-3xl flex flex-col justify-between" data-keywords="canvas مساحة عمل نصوص أكواد تطوير">
+            <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between" data-category="creative" data-keywords="canvas مساحة عمل نصوص أكواد">
                 <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-3xl">📋</span>
-                        <span class="text-xs px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">مساحة العمل</span>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-2xl">📋</span>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">تحرير</span>
                     </div>
-                    <h3 class="text-xl font-bold text-amber-300 mb-2">Canvas (مساحة العمل)</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed mb-6">لوحة تفاعلية مستقلة لتطوير النصوص، الأكواد البرمجية، والمشاريع جنباً إلى جنب مع المحادثة لتعديلها بسلاسة.</p>
+                    <h3 class="text-base font-bold text-amber-300 mb-1.5">Gemini Canvas</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed mb-4">لوحة تفاعلية جانبية لتطوير النصوص والأكواد البرمجية مباشرة.</p>
                 </div>
-                <a href="https://gemini.google.com" target="_blank" class="block text-center py-3 px-4 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold text-sm transition shadow-lg">فتح في جيميناي ←</a>
+                <a href="googlegemini://app" onclick="fallbackOpen(event, 'https://gemini.google.com')" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح في التطبيق ←</a>
             </div>
 
             <!-- 7. Gemini Spark -->
-            <div class="luxury-card p-6 rounded-3xl flex flex-col justify-between" data-keywords="gemini spark وكيل مهام أتمتة">
+            <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between" data-category="research" data-keywords="spark وكيل مهام أتمتة">
                 <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-3xl">⚡</span>
-                        <span class="text-xs px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">الأتمتة الذكية</span>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-2xl">⚡</span>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">أتمتة</span>
                     </div>
-                    <h3 class="text-xl font-bold text-amber-300 mb-2">Gemini Spark</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed mb-6">وكيل ذكي يعمل في الخلفية على مدار الساعة لتنفيذ المهام وتتبعها نيابة عنك لتوفير وقتك وجهدك.</p>
+                    <h3 class="text-base font-bold text-amber-300 mb-1.5">Gemini Spark</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed mb-4">وكيل ذكي يعمل في الخلفية على مدار الساعة لتنفيذ المهام نيابة عنك.</p>
                 </div>
-                <a href="https://gemini.google.com" target="_blank" class="block text-center py-3 px-4 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold text-sm transition shadow-lg">فتح في جيميناي ←</a>
+                <a href="googlegemini://app" onclick="fallbackOpen(event, 'https://gemini.google.com')" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح في التطبيق ←</a>
             </div>
 
             <!-- 8. Gems -->
-            <div class="luxury-card p-6 rounded-3xl flex flex-col justify-between" data-keywords="gems مساعدون مخصصون شخصيات">
+            <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between" data-category="creative" data-keywords="gems مساعدون مخصصون شخصيات">
                 <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-3xl">💎</span>
-                        <span class="text-xs px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">التخصيص</span>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-2xl">💎</span>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">تخصيص</span>
                     </div>
-                    <h3 class="text-xl font-bold text-amber-300 mb-2">Gems (المساعدون المخصصون)</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed mb-6">إنشاء شخصيات ذكاء اصطناعي مخصصة بتعليمات وقواعد ثابتة لتنفيذ مهامك المتكررة بكفاءة واحترافية.</p>
+                    <h3 class="text-base font-bold text-amber-300 mb-1.5">Gems (المساعدون المخصصون)</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed mb-4">إنشاء شخصيات ذكاء اصطناعي مخصصة بقواعد ثابتة لتكرار المهام.</p>
                 </div>
-                <a href="https://gemini.google.com" target="_blank" class="block text-center py-3 px-4 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold text-sm transition shadow-lg">فتح في جيميناي ←</a>
+                <a href="googlegemini://app" onclick="fallbackOpen(event, 'https://gemini.google.com')" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح في التطبيق ←</a>
+            </div>
+
+            <!-- 9. Google Workspace Integration -->
+            <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between" data-category="workspace" data-keywords="workspace مستندات جيميل جداول">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-2xl">📑</span>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">ووركسبس</span>
+                    </div>
+                    <h3 class="text-base font-bold text-amber-300 mb-1.5">Google Workspace AI</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed mb-4">التكامل مع مستندات جوجل، جيميل، وجداول البيانات بالأوامر الذكية.</p>
+                </div>
+                <a href="googledocs://" onclick="fallbackOpen(event, 'https://docs.google.com')" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح التطبيق ←</a>
+            </div>
+
+            <!-- 10. Gemini Live -->
+            <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between" data-category="mobile" data-keywords="live صوت محادثة مباشرة">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-2xl">🎙️</span>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">موبايل</span>
+                    </div>
+                    <h3 class="text-base font-bold text-amber-300 mb-1.5">Gemini Live</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed mb-4">محادثة صوتية تفاعلية حية وطبيعية مع ميزة المقاطعة الفورية.</p>
+                </div>
+                <a href="googlegemini://app" onclick="fallbackOpen(event, 'https://gemini.google.com')" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح في التطبيق ←</a>
+            </div>
+
+            <!-- 11. Google AI Studio -->
+            <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between" data-category="dev" data-keywords="ai studio مطورين api نماذج">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-2xl">⚙️</span>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">المطورين</span>
+                    </div>
+                    <h3 class="text-base font-bold text-amber-300 mb-1.5">Google AI Studio</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed mb-4">بيئة متقدمة لتجربة النماذج البرمجية واستخراج مفاتيح API.</p>
+                </div>
+                <a href="https://aistudio.google.com" target="_blank" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح الأداة ←</a>
+            </div>
+
+            <!-- 12. Vertex AI -->
+            <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between" data-category="dev" data-keywords="vertex ai سحابية إنتربرايز">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-2xl">☁️</span>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">سحابية</span>
+                    </div>
+                    <h3 class="text-base font-bold text-amber-300 mb-1.5">Google Cloud Vertex AI</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed mb-4">منصة المؤسسات لبناء ونشر نماذج الذكاء الاصطناعي السحابية.</p>
+                </div>
+                <a href="https://console.cloud.google.com" target="_blank" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح المنصة ←</a>
+            </div>
+
+            <!-- 13. Android Gemini Assistant -->
+            <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between" data-category="mobile" data-keywords="android هاتف مساعد افتراضي">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-2xl">📱</span>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">موبايل</span>
+                    </div>
+                    <h3 class="text-base font-bold text-amber-300 mb-1.5">Android Gemini Assistant</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed mb-4">استبدال مساعد جوجل الافتراضي بـ جيميناي للتحكم بالهاتف صوتياً.</p>
+                </div>
+                <a href="googlegemini://app" onclick="fallbackOpen(event, 'https://gemini.google.com')" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح التطبيق ←</a>
+            </div>
+
+            <!-- 14. Google Lens / Multimodal Search -->
+            <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between" data-category="mobile" data-keywords="lens عدسة بحث بصري كاميرا">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-2xl">📷</span>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">بصري</span>
+                    </div>
+                    <h3 class="text-base font-bold text-amber-300 mb-1.5">Multimodal Lens Search</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed mb-4">التحليل البصري الفوري عبر الكاميرا والبحث المباشر عن العناصر.</p>
+                </div>
+                <a href="googlelens://" onclick="fallbackOpen(event, 'https://lens.google.com')" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح التطبيق ←</a>
+            </div>
+
+            <!-- 15. Google Photos AI Edit -->
+            <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between" data-category="creative" data-keywords="photos صور تعديل ذكي سحرى">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-2xl">✨</span>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700">صور</span>
+                    </div>
+                    <h3 class="text-base font-bold text-amber-300 mb-1.5">Google Photos AI Tools</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed mb-4">أدوات التعديل السحري، إزالة العناصر وتحسين الصور بالذكاء الاصطناعي.</p>
+                </div>
+                <a href="photos://" onclick="fallbackOpen(event, 'https://photos.google.com')" class="block text-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-bold text-xs transition shadow-md">فتح التطبيق ←</a>
             </div>
 
         </div>
 
         <!-- Footer -->
         <footer class="text-center mt-14 pb-8 text-xs text-slate-400 border-t border-emerald-950/60 pt-6">
-            جميع Rights المحفوظة © 2026 | إنتاج: البركة ديجيتال | إشراف: عبد الله أحمد
+            جميع الحقوق محفوظة © 2026 | إنتاج: البركة ديجيتال | إشراف: عبد الله أحمد
         </footer>
 
     </div>
 
     <script>
-        // Real-time search filter
+        // Search & Filter Logic
         const searchInput = document.getElementById('searchInput');
         const cards = document.querySelectorAll('#toolsGrid > div');
+        let currentCategory = 'all';
 
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase().trim();
+        function filterCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('.category-tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            applyFilters();
+        }
+
+        searchInput.addEventListener('input', () => {
+            applyFilters();
+        });
+
+        function applyFilters() {
+            const query = searchInput.value.toLowerCase().trim();
             cards.forEach(card => {
+                const cat = card.getAttribute('data-category');
                 const keywords = card.getAttribute('data-keywords');
                 const title = card.querySelector('h3').textContent.toLowerCase();
                 const desc = card.querySelector('p').textContent.toLowerCase();
                 
-                if (keywords.includes(query) || title.includes(query) || desc.includes(query)) {
+                const matchesCategory = (currentCategory === 'all' || cat === currentCategory);
+                const matchesQuery = (keywords.includes(query) || title.includes(query) || desc.includes(query));
+
+                if (matchesCategory && matchesQuery) {
                     card.style.display = 'flex';
                 } else {
                     card.style.display = 'none';
                 }
             });
-        });
+        }
+
+        // Smart Deep Link Fallback (Opens App or falls back to Web if app is missing)
+        function fallbackOpen(e, webUrl) {
+            // Let the custom scheme attempt to open, if it fails or user is on desktop, webUrl acts as backup
+            setTimeout(() => {
+                // If page is still visible, fallback can trigger or let target blank handle it
+            }, 500);
+        }
     </script>
 </body>
 </html>
-
